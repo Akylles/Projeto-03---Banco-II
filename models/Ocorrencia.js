@@ -1,4 +1,4 @@
-import mongoose from "../database/conexao.js"
+import mongoose from "../database/mongo.database.js"
 
 const ocorrenciaSchema = mongoose.Schema({
     titulo:{

@@ -11,7 +11,7 @@ const clienteRedis = new redis.createClient({
 
 try {
     await clienteRedis.connect()    
-    console.log(`Conectado com o REDIS no HOST: ${HOST} e na PORTA: ${PORT}`)
+    console.log(`Conectado com o REDIS efetuada com sucesso`)
 } catch (error) {
     console.log(error)
 }
