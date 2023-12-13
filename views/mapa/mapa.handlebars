@@ -54,9 +54,9 @@
             const botaoSalvar = document.getElementById('salvar-ocorrencia')
             const lat = marker.getPosition().lat()
             const lng = marker.getPosition().lng()
-            const url = //`/ocorrencias/form/${lat}/${lng}`
+            const url = `/ocorrencias/form/${lat}/${lng}`
             
-            botaoSalvar.href = `/ocorrencias/form/${lat}/${lng}`
+            botaoSalvar.href = url
         })
 
         marker.addListener('dblclick', () =>{
