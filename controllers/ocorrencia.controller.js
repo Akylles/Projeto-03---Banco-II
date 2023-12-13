@@ -1,7 +1,11 @@
 import serviceOcorrencia from "../services/ocorrencia.service.js";
+import serviceCache from '../services/cache.service.js'
 
 const mostrarOcorrencias = async (req, res) => {
     let colecaoOcorrencias = await serviceOcorrencia.buscarTodos()
+    
+    // salva as ocorrencias no cache do redis
+    await serviceCache.salvar('ocorrencias', colecaoOcorrencias)
     
     colecaoOcorrencias = colecaoOcorrencias.map(
         ocorrencia => {
@@ -14,7 +18,7 @@ const mostrarOcorrencias = async (req, res) => {
             }
         }
     )
-
+    console.log('.........VEIO DO MONGODB ATLAS............')
     res.render('ocorrencias/ocorrencias', {ocorrencias: colecaoOcorrencias})
 }
 

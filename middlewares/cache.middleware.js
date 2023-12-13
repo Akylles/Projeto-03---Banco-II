@@ -1,6 +1,6 @@
 import serviceCache from "../services/cache.service.js";
 
-const CHAVE = 'produtos'
+const CHAVE = 'ocorrencias'
 
 const limpaCache = async (req, res, next) => {
     try {
@@ -18,11 +18,19 @@ const verificaSeTemCache = async (req, res, next) => {
     const cache = await serviceCache.buscar(CHAVE)
 
     if (cache){
-        res.status(200).send({
-            message: "Produtos do cache",
-            produtos: cache
-        
-        })        
+        const colecaoOcorrencias = cache.map(
+            ocorrencia => {
+                return {
+                    id: ocorrencia._id,
+                    titulo: ocorrencia.titulo,
+                    tipo: ocorrencia.tipo,
+                    data: ocorrencia.data.toLocaleString('pt-BR', { timezone: 'UTC' }),
+                    localizacao: ocorrencia.localizacao
+                }
+            }
+        )
+        console.log('.........VEIO DO CACHE............')
+        res.render('ocorrencias/ocorrencias', {ocorrencias: colecaoOcorrencias})        
     }else{
         next()
     }

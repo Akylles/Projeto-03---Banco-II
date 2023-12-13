@@ -4,6 +4,7 @@ import router from './routes/rotasOcorrencia.js'
 import session from 'express-session'
 import flash from 'connect-flash'
 import methodOverride from 'method-override'
+import 'dotenv/config'
 
 const app = express()
 
@@ -28,7 +29,7 @@ app.use((req, res, next)=>{
     next()
 })
 
-const PORTA = 8080
+const PORTA = process.env.API_PORT || 8080
 
 app.use(express.urlencoded({extended: true}))
 
